@@ -12,10 +12,12 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.example.jetpackcomposeretrofit.data.model.Cat
@@ -23,12 +25,18 @@ import com.example.jetpackcomposeretrofit.util.ApiState
 
 @Composable
 fun CatScreen(viewModel: CatViewModel) {
-    var searchName by remember { mutableStateOf("") }
+    var searchName by remember { mutableStateOf("a") }
     val catListState by viewModel.catList
 
-    Column(modifier = Modifier
-        .fillMaxSize()
-        .padding(16.dp)) {
+    LaunchedEffect(Unit) {
+        viewModel.fetchCatList(searchName)
+    }
+
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp)
+    ) {
 
         OutlinedTextField(
             value = searchName,
@@ -50,11 +58,19 @@ fun CatScreen(viewModel: CatViewModel) {
 
         when (catListState) {
             is ApiState.Loading -> {
-                CircularProgressIndicator(modifier = Modifier.padding(16.dp))
+                CircularProgressIndicator(
+                    modifier = Modifier
+                        .padding(16.dp)
+                        .align(
+                            Alignment.CenterHorizontally
+                        )
+                )
             }
+
             is ApiState.Success -> {
                 CatList(cats = (catListState as ApiState.Success<List<Cat>>).data)
             }
+
             is ApiState.Error -> {
                 Text(
                     text = (catListState as ApiState.Error).message,

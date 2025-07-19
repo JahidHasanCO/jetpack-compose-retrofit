@@ -25,7 +25,7 @@ data class Cat(
     @SerializedName("min_life_expectancy")
     val minLifeExpectancy: Int?,
     @SerializedName("min_weight")
-    val minWeight: Int?,
+    val minWeight: Double?,
     @SerializedName("name")
     val name: String?,
     @SerializedName("origin")
