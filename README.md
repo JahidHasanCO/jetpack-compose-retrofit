@@ -4,9 +4,9 @@ This Android application demonstrates how to build a simple app using modern And
 list of cat breeds from an external API (likely [TheCatAPI](https://api-ninjas.com/api/cats) or a similar service) and displays them in a list using Jetpack Compose. The app showcases the use of Retrofit for networking, Hilt for dependency injection, and Coil for image loading.
 
 ## Screenshots
-| Screenshot 1                  | Screenshot 2              |
-|-------------------------------|---------------------------|
-| ![Screenshot 1](ART/art1.png) | ![Screenshot 2](art2.png) |
+| Screenshot 1                  | Screenshot 2                  |
+|-------------------------------|-------------------------------|
+| ![Screenshot 1](ART/art1.png) | ![Screenshot 2](ART/art2.png) |
 
 
 ## Features
